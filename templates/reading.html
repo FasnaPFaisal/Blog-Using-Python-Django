@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<header>
+    <div class="container container-flex">
+        <div class="site-title">
+            <h1>Living the social life</h1>
+            <p class="subtitle">A blog exploring minimalism in life</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a class="current-page" href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'about-me' %}">About me</a></li>
+                <li><a href="{% url 'add-post' %}">Add post</a></li>
+                <li><a href="{% url 'recent-posts' %}">Recent posts</a></li>
+            </ul>
+        </nav>
+    </div> <!-- / .container -->
+</header>
+
+<article class="article-recent">
+    <div class="article-recent-main">
+        <h2 class="article-title">{{ post.title }}</h2>
+        <p class="article-body">{{ post.description|truncatewords:30 }}</p> 
+        <div>
+            <a href="{% url 'edit' post.id %}"><button class="edit_btn">Edit</button></a>
+            <a href="{% url 'delete' post.id %}"><button class="delete_btn">Delete</button></a>            
+        </div>       
+    </div>
+    <div class="article-recent-secondary">
+        <img src="{{ post.image.url }}" alt="image related to {{ post.title }}" class="article-image" style="margin-bottom: 29px;">        
+    </div>
+</article>
+
+
+<footer>
+    <p><strong>Living the Simple Life</strong></p>
+    <p>Copyright 2019</p>
+</footer>
+
+{% endblock %}

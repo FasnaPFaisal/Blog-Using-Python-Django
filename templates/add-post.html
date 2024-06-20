@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<header>
+    <div class="container container-flex">
+        <div class="site-title">
+            <h1>Living the social life</h1>
+            <p class="subtitle">A blog exploring minimalism in life</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'about-me' %}">About me</a></li>
+                <li><a class="current-page" href="{% url 'add-post' %}">Add post</a></li>
+                <li><a href="{% url 'recent-posts' %}">Recent posts</a></li>
+            </ul>
+        </nav>
+    </div> <!-- / .container -->
+</header>
+<div class="form_div">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="center-btn">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+
+<footer>
+    <p><strong>Living the Simple Life</strong></p>
+    <p>Copyright 2019</p>
+</footer>
+
+{% endblock %}
